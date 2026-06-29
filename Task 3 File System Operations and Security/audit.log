@@ -1,0 +1,14 @@
+[AUDIT] USER SUCCESSFULLY AUTHENTICATED!
+[AUDIT] Created 3 base files for users.
+[AUDIT] Applied strict chmod permissions to all 3 files.
+[AUDIT] Blocked unauthoried write attempt on user1_readonly.txt
+[AUDIT] Successful write to user2_readwrite.txt
+[AUDIT] Encrypted sensitive data in memory.
+[AUDIT] Decrypt sensitive data in memory.
+[AUDIT] USER SUCCESSFULLY AUTHENTICATED!
+[AUDIT] Created 3 base files for users.
+[AUDIT] Applied strict chmod permissions to all 3 files.
+[AUDIT] Blocked unauthoried write attempt on user1_readonly.txt
+[AUDIT] Successful write to user2_readwrite.txt
+[AUDIT] Encrypted sensitive data in memory.
+[AUDIT] Decrypt sensitive data in memory.
