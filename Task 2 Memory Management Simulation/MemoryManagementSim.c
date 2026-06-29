@@ -62,20 +62,33 @@ void run_fifo(int pages[], int n) {
 // Least Recently unsigned
 void run_lru(int pages[], int n) {
     init_frames();
-    int time[FRAMES] = {0}; // helps track usage
+    int time[FRAMES] = {0}; 
     page_faults = 0; hits = 0;
     for(int i = 0; i < n; i++) {
         if(is_hit(pages[i])) { 
             hits++; 
-            printf("Page %d: Hit!  | Frames: [%d, %d, %d]\n", pages[i], frames[0], frames[1], frames[2]); //Tracking page hits or misses
-            // NEW ADDED: Simple LRU logic - find the index with lowest 'time'
+            for(int j = 0; j < FRAMES; j++) {
+                if(frames[j] == pages[i]) {
+                    time[j] = i;
+                    break;
+                }
+            }
+            printf("Page %d: Hit!  | Frames: [%d, %d, %d]\n", pages[i], frames[0], frames[1], frames[2]);
+        } else {
             int lru_idx = 0;
-            for(int j = 1; j < FRAMES; j++) if(time[j] < time[lru_idx]) lru_idx = j;
-            
+            for(int j = 0; j < FRAMES; j++) {
+                if(frames[j] == -1) {
+                    lru_idx = j;
+                    break;
+                }
+                if(time[j] < time[lru_idx]) {
+                    lru_idx = j;
+                }
+            }
             frames[lru_idx] = pages[i];
-            time[lru_idx] = i; // update time to current step
+            time[lru_idx] = i; 
             page_faults++;
-            printf("Page %d: Fault!| Frames: [%d, %d, %d]\n", pages[i], frames[0], frames[1], frames[2]); //Tracking page hits or misses
+            printf("Page %d: Fault!| Frames: [%d, %d, %d]\n", pages[i], frames[0], frames[1], frames[2]);
         }
     }
 }
