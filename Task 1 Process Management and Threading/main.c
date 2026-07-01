@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include "common.h"
 
+// Global shared resource
 int shared_counter = 0;
+
+// declaring mutex to protect shared resource
 pthread_mutex_t counter_mutex;
+
+// mutex for deadlock demonstration
 pthread_mutex_t resource_a;
 pthread_mutex_t resource_b;
 pthread_mutex_t resource_c; 
