@@ -1,6 +1,7 @@
 #include "common.h"
 
 // Deadlock Demonstration using Three Threads
+// Deadlock simulation 1 for first thread
 void* deadlock_t1(void* arg) {
     pthread_mutex_lock(&resource_a);
     printf("Thread1: got A, waiting for B.\n");
@@ -13,6 +14,7 @@ void* deadlock_t1(void* arg) {
     return NULL;
 }
 
+// Deadlock simulation 2 for second thread
 void* deadlock_t2(void* arg) {
     pthread_mutex_lock(&resource_b);
     printf("Thread2: got B, waiting for C.\n");
@@ -25,6 +27,7 @@ void* deadlock_t2(void* arg) {
     return NULL;
 }
 
+// Deadlock simulation 3 for third thread
 void* deadlock_t3(void* arg) {
     pthread_mutex_lock(&resource_c);
     printf("Thread3: got C, waiting for A.\n");
