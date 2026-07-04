@@ -22,10 +22,12 @@ int main() {
     
     // running fifo
     run_fifo(pages, n);
+    // FiFO results
     printf("FIFO Faults: %d, Hit Ratio: %.2f\n", page_faults, (float)hits/(hits+page_faults));
     
     // running LRU
     run_lru(pages, n);
+    // LRU results
     printf("LRU Faults: %d, Hit Ratio: %.2f\n", page_faults, (float)hits/(hits+page_faults));
     
     return 0;
@@ -36,6 +38,7 @@ void init_frames() {
     for(int i = 0; i < FRAMES; i++) frames[i] = -1;
 }
 
+// checking if the page is already in the frames
 bool is_hit(int page) {
     for(int i = 0; i < FRAMES; i++) if(frames[i] == page) return true;
     return false;
@@ -43,7 +46,7 @@ bool is_hit(int page) {
 
 // First In First Out
 void run_fifo(int pages[], int n) {
-    init_frames();
+    init_frames(); // clearing frames for new simulation
     int next_replace = 0;
     page_faults = 0; hits = 0;
     for(int i = 0; i < n; i++) {
@@ -59,9 +62,9 @@ void run_fifo(int pages[], int n) {
     }
 }
 
-// Least Recently unsigned
+// Least Recently Used
 void run_lru(int pages[], int n) {
-    init_frames();
+    init_frames(); // clearing frames for new simulation
     int time[FRAMES] = {0}; 
     page_faults = 0; hits = 0;
     for(int i = 0; i < n; i++) {
