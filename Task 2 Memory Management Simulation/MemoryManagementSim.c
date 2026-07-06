@@ -5,6 +5,7 @@
 #define PAGE_SIZE 256
 #define FRAMES 3
 
+// Global variables for memory frames, page faults, and hits
 int frames[FRAMES];
 int page_faults = 0;
 int hits = 0;
@@ -54,6 +55,7 @@ void run_fifo(int pages[], int n) {
             hits++; 
             printf("Page %d: Hit!  | Frames: [%d, %d, %d]\n", pages[i], frames[0], frames[1], frames[2]); //Tracking page hits or misses
         } else {
+            // Replacing oldest page and adding new page to the frame
             frames[next_replace] = pages[i];
             next_replace = (next_replace + 1) % FRAMES;
             page_faults++;
@@ -70,6 +72,7 @@ void run_lru(int pages[], int n) {
     for(int i = 0; i < n; i++) {
         if(is_hit(pages[i])) { 
             hits++; 
+            // update the access time for the page in the frame
             for(int j = 0; j < FRAMES; j++) {
                 if(frames[j] == pages[i]) {
                     time[j] = i;
